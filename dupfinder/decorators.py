@@ -1,4 +1,4 @@
-"""Dekoratory funkcji używane w całym projekcie."""
+"""Dekoratory funkcji i metod używane w całym projekcie."""
 
 import functools
 import logging
@@ -78,3 +78,24 @@ def retry(
         return wrapper
 
     return decorator
+
+
+def requires_root[R](method: Callable[..., R]) -> Callable[..., R]:
+    """Dekorator metody: wymaga, by `self.root` było istniejącym katalogiem.
+
+    W odróżnieniu od dekoratorów funkcji wrapper jawnie przyjmuje `self`,
+    bo korzysta ze stanu obiektu. Oczekuje atrybutu `root` typu Path.
+
+    Raises:
+        NotADirectoryError: gdy self.root nie jest katalogiem.
+    """
+
+    @functools.wraps(method)
+    def wrapper(self: Any, *args: Any, **kwargs: Any) -> R:
+        if not self.root.is_dir():
+            raise NotADirectoryError(
+                f"{method.__name__}: {self.root} nie jest katalogiem"
+            )
+        return method(self, *args, **kwargs)
+
+    return wrapper
