@@ -19,7 +19,7 @@ Skróty można liczyć sekwencyjnie, na wątkach lub na procesach (opcja `--mode
 
 - Python 3.12 lub nowszy (kod używa składni generyków z PEP 695, np. `def retry[**P, R]`),
 - kod główny nie wymaga bibliotek zewnętrznych.
-
+- do testów: `pytest` (`pip install -r requirements.txt`); sam program nie wymaga bibliotek zewnętrznych.
 ```
 git clone <LINK DO REPOZYTORIUM>
 cd wyszukiwarka-duplikatow
@@ -101,6 +101,17 @@ benchmarks/
 | sekwencyjnie | 0,20 | 1,00x |
 | wątki | 0,07 | 2,80x |
 | procesy | 0,33 | 0,62x |
+
+## Testy
+
+```
+python -m pip install -r requirements.txt
+python -m pytest -v
+```
+
+Zestaw zawiera 96 testów jednostkowych (`pytest`) obejmujących dekoratory, wyrażenia regularne,
+iterator, generatory, skróty (wszystkie trzy tryby), klasę `DuplicateFinder` i interfejs
+wiersza poleceń.
 
 ### Wnioski dotyczące GIL
 
