@@ -21,7 +21,7 @@ Skróty można liczyć sekwencyjnie, na wątkach lub na procesach (opcja `--mode
 - kod główny nie wymaga bibliotek zewnętrznych.
 - do testów: `pytest` (`pip install -r requirements.txt`); sam program nie wymaga bibliotek zewnętrznych.
 ```
-git clone <LINK DO REPOZYTORIUM>
+Repozytorium: https://github.com/Wasta57/wyszukiwarka-dupikatow
 cd wyszukiwarka-duplikatow
 python -m venv .venv
 .venv\Scripts\Activate.ps1
