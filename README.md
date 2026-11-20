@@ -134,18 +134,9 @@ uruchomieniami.
 
 - **Za stara wersja Pythona.** W systemie był Python 3.8, a projekt wymaga 3.12+. Zainstalowałem
   nowszy i utworzyłem środowisko wirtualne `.venv`.
-- **Git niewidoczny w terminalu po instalacji.** Terminal VS Code nie widział nowego programu,
-  dopóki nie zamknąłem całkowicie VS Code (odświeża zmienną PATH).
-- **Blokada skryptów w PowerShellu.** Aktywacja środowiska (`Activate.ps1`) wymagała jednorazowego
-  `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`.
-- **Zmiana nazwy folderu projektu.** Środowisko `.venv` zapisuje bezwzględne ścieżki, więc po
-  zmianie nazwy folderu musiałem utworzyć je od nowa.
 - **Funkcje przesyłane do procesów.** `ProcessPoolExecutor` przesyła funkcje przez `pickle`, który nie
   obsługuje funkcji zagnieżdżonych, dlatego `safe_hash` jest zdefiniowana na poziomie modułu.
 - **Metoda `spawn` w Windows.** Procesy potomne importują moduł główny od nowa, więc `main.py`
   i benchmark mają zabezpieczenie `if __name__ == "__main__":`.
-- **Procesy wolniejsze przy krótkich zadaniach.** Początkowo zaskoczyło mnie, że `ProcessPoolExecutor`
-  jest wolniejszy od sekwencyjnego liczenia skrótów małych plików. Wyjaśnił to benchmark: koszt
-  startu procesów przewyższa zysk, gdy zadania trwają ułamki sekundy.
 - **Uruchamianie z przycisku ▶ w VS Code.** Uruchomienie przez debugger zawiesiło się, dlatego
   skrypty uruchamiam z terminala poleceniem `python`.
